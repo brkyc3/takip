@@ -1,19 +1,12 @@
 ### Feature Matching İle Nesne Takibi
 ---
 #### Nesne Seçme
-
-<p align="center">
-<img (secim.png)/>
-</p>
-
-
+ 
+![Nesne Seciliyor](secim.png)
 
 ---
-
-
 ### Takip
-<p align="center">
-<img (ornek.gif)/>
-</p>
+
+![Takip etme](ornek.gif)
 
 ---
