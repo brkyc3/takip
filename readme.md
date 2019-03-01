@@ -1,11 +1,19 @@
 ### Feature Matching İle Nesne Takibi
 ---
 #### Nesne Seçme
- 
-![Alt Text](secim.png)
+
+<p align="center">
+<img (secim.png)/>
+</p>
+
+
 
 ---
+
+
 ### Takip
-![Alt Text](ornek.gif)
+<p align="center">
+<img (ornek.gif)/>
+</p>
 
 ---
