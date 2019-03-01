@@ -2,7 +2,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
-#include <opencv2/xfeatures2d.hpp>
+#include <opencv2/xfeatures2d/nonfree.hpp>
 #include <opencv/cv.hpp>
 #include <opencv2/opencv.hpp>
 #include <deque>
@@ -34,15 +34,56 @@ Mat getfromq(deque<Mat> &q ){
 
 }
 
+bool drawing=false;
+Point start;
+Mat frame1;
+void draw(int event, int x, int y, int flags, void* param){
+    Mat& img= *((cv::Mat * )param);
+
+    Mat cln =img.clone();
+    if (event == CV_EVENT_LBUTTONDOWN){
+        drawing = true;
+        start ={x,y};
+    } else if (event == CV_EVENT_MOUSEMOVE){
+        if (drawing) {
+            rectangle(cln, start, {x, y}, {0, 0, 255});
+            imshow("Select object to track", cln);
+        }
+    } else if (event == CV_EVENT_LBUTTONUP){
+        drawing = false;
+
+        frame1 = img(Rect(start, Point{x, y})).clone();
+
+        rectangle(cln, start, {x, y}, {0, 0, 255});
+    }
+}
 int main() {
 
     deque<Mat> last5;
     Ptr<xfeatures2d::SurfFeatureDetector> detector = xfeatures2d::SurfFeatureDetector::create(300,5,5, false,true );
-    VideoCapture cap("/home/burak/CLionProjects/cinbekleme/cmake-build-debug/output.wmv");
+    VideoCapture cap("output.wmv");
+
+    Mat selectObject;
+    cap>>selectObject;
+
+    imshow("Select object to track",selectObject);
+    setMouseCallback("Select object to track",draw,&selectObject);
+    waitKey(0);
+    destroyWindow("Select object to track");
+
+   Mat frame2;
+
+   /*
+    frame1 =imread("ucak.png");
+    if(frame1.empty()) {
+        cout << "dosya bulunamadi" << endl;
+return 0;
+    }
+
+    */
 
 
-    Mat frame1,frame2;
-    frame1 =imread("/home/burak/CLionProjects/cinbekleme/cmake-build-debug/ucak.png");
+
 //
 //cap>>frame1;
 //    imshow("cikti", frame1);
@@ -54,10 +95,12 @@ int main() {
     Point2f start;
     Mat lastframe;
     while(1) {
+
+        cv::imshow("ucak", frame1);
         cap >> frame2;
 
         if(frame2.empty()){
-            cv::imshow("biftti", frame1);
+            cv::imshow("bitti", frame1);
             cv::waitKey(0);
         }
 
@@ -96,7 +139,7 @@ int main() {
             vector<DMatch> goodMatches(mathces.begin(), mathces.begin() + numOfGoodPoints);
         Mat draw;
         drawMatches(gray1, keypoints1, gray2, keypoints2, goodMatches, draw);
-        imshow("Eslesmeler", draw);
+        //imshow("Eslesmeler", draw);
 
         if(goodMatches.size()<15){
 

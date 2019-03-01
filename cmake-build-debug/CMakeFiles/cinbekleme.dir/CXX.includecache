@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/burak/CLionProjects/cinbekleme/main.cpp
+/home/brkyzc/CLionProjects/takip/main.cpp
 iostream
 -
 opencv2/imgproc.hpp
@@ -15,7 +15,7 @@ opencv2/highgui.hpp
 -
 opencv2/core.hpp
 -
-opencv2/xfeatures2d.hpp
+opencv2/xfeatures2d/nonfree.hpp
 -
 opencv/cv.hpp
 -
@@ -1401,12 +1401,6 @@ opencv2/videostab/global_motion.hpp
 /usr/local/include/opencv2/videostab/opencv2/videostab/global_motion.hpp
 opencv2/videostab/log.hpp
 /usr/local/include/opencv2/videostab/opencv2/videostab/log.hpp
-
-/usr/local/include/opencv2/xfeatures2d.hpp
-opencv2/features2d.hpp
-/usr/local/include/opencv2/opencv2/features2d.hpp
-opencv2/xfeatures2d/nonfree.hpp
-/usr/local/include/opencv2/opencv2/xfeatures2d/nonfree.hpp
 
 /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 opencv2/core/cuda.hpp
