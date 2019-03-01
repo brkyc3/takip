@@ -167,7 +167,7 @@ return 0;
         cv::Mat H = estimateRigidTransform(query, train, true);
         cout<<H<<endl;
         if(H.empty()){
-            imshow("warp", frame2);
+            imshow("track", frame2);
             waitKey(1);
             continue;
 
@@ -241,7 +241,7 @@ return 0;
         Mat frame2imshow = frame2.clone();
         circle(frame2imshow, center, 3, Scalar(0, 0, 255),5);
 
-        imshow("warp", frame2imshow);
+        imshow("track", frame2imshow);
 
         frame2(window).copyTo(frame1);
         pushmyq(last5, frame1);
